@@ -1,18 +1,21 @@
 import React from 'react';
-import { BrowserRouter, Redirect, Route, Routes } from 'react-router-dom';
+import { Redirect, Route, Routes} from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import Home from '../pages/Home'
 import App from '../App'
+import Layout from '../components/Layout';
 
 function Router() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/login" component={<LoginPage />} />
-                {/*<LoginRedirect path="/home" Component={<Home />} />*/}
-                <Route path="/" component={<App />} />
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/login" >
+                <LoginPage />
+            </Route>
+            {/*<LoginRedirect path="/home" Component={<Home />} />*/}
+            <Route path="/" component={App}>
+                <Home/>
+            </Route>
+        </Routes>
     );
 }
 /*

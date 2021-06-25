@@ -1,4 +1,11 @@
 import React from 'react';
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+
+function MainPage(userName) {
+    return <p>Main page</p>
+}
+
 
 class Home extends React.Component {
     constructor(props) {
@@ -15,7 +22,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                Hello, {this.state.userName}!
+                <MainPage userName={this.state.userName} />
             </div>
         );
     }

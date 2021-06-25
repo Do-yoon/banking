@@ -1,25 +1,23 @@
 import React from 'react';
 import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import LoginPage from './pages/LoginPage';
+import Layout from './components/Layout'
+import Home from './pages/Home';
 import Router from './util/Router'
-import Home from './pages/Home'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedIn: false
+            isLoggedIn: false,
+            userName: ''
         }
     }
     render() {
         return (
             <div className="app">
-                <Router />
-                <Header isLoggedIn={this.state.isLoggedIn} />
-                <Home isLoggedIn={this.state.isLoggedIn} />
-                <Footer />
+                <Layout>
+                    <Router />
+                </Layout>
             </div>
         );
     }
