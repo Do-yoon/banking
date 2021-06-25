@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import Login from './pages/Login.js'
-import Footer from './components/Footer.js'
-import Header from './components/Header.js'
+import Footer from './components/Footer';
+import Header from './components/Header';
+import LoginPage from './pages/LoginPage';
+import Router from './util/Router'
+import Home from './pages/Home'
 
-function App() {
-  return (
-      <div className="App">
-          <div>
-              <Header />
-          </div>
-          <div>
-              <Login className="Login"/>
-          </div>
-          <div >
-              <Footer />
-          </div >
-      </div>
-  );
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: false
+        }
+    }
+    render() {
+        return (
+            <div className="app">
+                <Router />
+                <Header isLoggedIn={this.state.isLoggedIn} />
+                <Home isLoggedIn={this.state.isLoggedIn} />
+                <Footer />
+            </div>
+        );
+    }
 }
 
 export default App;
