@@ -7,10 +7,8 @@ import Router from './util/Router'
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isLoggedIn: false,
-            userName: ''
-        }
+        this.isLoggedIn = false;
+        this.userName = '';
     }
     render() {
         return (

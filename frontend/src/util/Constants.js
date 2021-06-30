@@ -1,9 +1,20 @@
 const TextArea = {
-    logoutButton: "∑Œ±◊æ∆øÙ",
+    logoutButton: "Î°úÍ∑∏ÏïÑÏõÉ",
     hello: (userName) => (`Hello, $(userName)!`),
-    loginButton: "∑Œ±◊¿Œ",
+    loginButton: "Î°úÍ∑∏Ïù∏",
     pleaseSignIn: "Please sign in",
     footer: ""
 }
+
+export const urls = {
+    signin: "/signin",
+    signup: "/signup",
+    signout: "/signout",
+    withdraw: "/withdraw"
+}
+
+export const baseurl = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development' ?
+    'localhost:8080/v0' :
+    'localhost:8080/v0')
 
 export default TextArea;

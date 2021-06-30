@@ -1,7 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\components",
+    "\\frontend\\src\\pages",
+    "\\frontend\\src\\store",
+    "\\frontend\\src\\store\\module",
+    "\\frontend\\src\\store\\module\\login",
+    "\\frontend\\src\\util"
   ],
-  "SelectedNode": "\\openbanking",
+  "SelectedNode": "\\frontend\\src\\index.js",
   "PreviewInSolutionExplorer": false
 }

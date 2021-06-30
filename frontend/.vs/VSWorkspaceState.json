@@ -5,8 +5,9 @@
     "\\src",
     "\\src\\components",
     "\\src\\pages",
+    "\\src\\security",
     "\\src\\util"
   ],
-  "SelectedNode": "\\src\\App.js",
+  "SelectedNode": "\\src\\util\\Constants.js",
   "PreviewInSolutionExplorer": false
 }
