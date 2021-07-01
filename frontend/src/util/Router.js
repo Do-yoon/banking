@@ -8,7 +8,7 @@ import Layout from '../components/Layout';
 function Router() {
     return (
         <Routes>
-            <Route path="/login" >
+            <Route path="/signin" >
                 <LoginPage />
             </Route>
             {/*<LoginRedirect path="/home" Component={<Home />} />*/}

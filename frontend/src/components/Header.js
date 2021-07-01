@@ -4,7 +4,7 @@ import TextArea from '../util/Constants';
 
 function LoginButton(props) {
     return (
-        <Link to="/login">
+        <Link to="/signin">
             <button onClick={props.onClick}>
                 {TextArea.loginButton}
             </button>

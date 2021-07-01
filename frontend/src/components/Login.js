@@ -1,5 +1,5 @@
 import React from 'react'
-import TextArea from '../util/Constants';
+import TextArea, {urls, baseurl} from '../util/Constants';
 import validate from "../user/Validate";
 
 class Login extends React.Component {
@@ -10,14 +10,22 @@ class Login extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.loginButton = TextArea.loginButton;
     }
+
     handleChange(event) {
-        this.setState({
-            id: event.target.name.userId,
-            pw: event.target.name.userPw
-        });
+        if (event.target.name === "userId") {
+            this.setState({
+                id: event.target.value
+            });
+        } else {
+            this.setState({
+                pw: event.target.value
+            });
+        }
     }
+
     login(event) {
-        if(validate.signin({id: this.state.id, pw: this.state.pw})) {
+        console.log({id: this.state.id, pw: this.state.pw});
+        if (validate.signin({id: this.state.id, pw: this.state.pw})) {
             event.preventDefault();
             window.setTimeout(() => {
                 window.location.href = "/home"
@@ -26,26 +34,19 @@ class Login extends React.Component {
             alert('nono');
         }
     }
+
     render() {
         return (
             <div>
-                <form method="post" onSubmit={this.login}>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>ID</td>
-                                <td><input type="text" name="userId" value={this.state.id} onChange={this.handleChange}/></td>
-                            </tr>
-                            <tr>
-                                <td>PW</td>
-                                <td><input type="text" name="userPw" value={this.state.id} onChange={this.handleChange}/></td>
-                            </tr>
-                            <tr>
-                                <td><input type="submit" value={this.loginButton} /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
+                <div>
+                    ID<input type="text" name="userId" value={this.state.id} onChange={this.handleChange}/>
+                </div>
+                <div>
+                    PW<input type="password" name="userPw" value={this.state.pw} onChange={this.handleChange}/>
+                </div>
+                <div>
+                    <input type="button" value={this.loginButton} onClick={this.login}/>
+                </div>
             </div>
         );
     }
