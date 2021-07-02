@@ -1,5 +1,5 @@
 import React from 'react'
-import TextArea, {urls, baseurl} from '../util/Constants';
+import TextArea from '../util/Constants';
 import validate from "../user/Validate";
 
 class Login extends React.Component {
@@ -24,15 +24,17 @@ class Login extends React.Component {
     }
 
     login(event) {
-        console.log({id: this.state.id, pw: this.state.pw});
-        if (validate.signin({id: this.state.id, pw: this.state.pw})) {
-            event.preventDefault();
-            window.setTimeout(() => {
-                window.location.href = "/home"
-            }, 3000);
-        } else {
-            alert('nono');
-        }
+        const result = validate.signin({id: this.state.id, pw: this.state.pw})
+        result
+            .then((userName) => {
+                window.sessionStorage.setItem("userName", userName);
+                alert(userName);
+                event.preventDefault();
+                window.location.href = "/home";
+            })
+            .catch((message) => {
+                alert(message)
+            })
     }
 
     render() {

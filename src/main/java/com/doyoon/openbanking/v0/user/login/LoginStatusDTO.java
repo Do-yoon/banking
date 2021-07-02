@@ -1,10 +1,13 @@
 package com.doyoon.openbanking.v0.user.login;
 
+import com.doyoon.openbanking.v0.user.UserInfo;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 public class LoginStatusDTO {
     /*
      0: success sign in
@@ -14,5 +17,5 @@ public class LoginStatusDTO {
      */
 
     private int loginStatus;
-    // private UserInfo userInfo
+    private UserInfo userInfo;
 }

@@ -4,11 +4,9 @@ import TextArea from '../util/Constants';
 
 function LoginButton(props) {
     return (
-        <Link to="/signin">
-            <button onClick={props.onClick}>
-                {TextArea.loginButton}
-            </button>
-        </Link>
+        <button onClick={props.onClick}>
+            {TextArea.loginButton}
+        </button>
     );
 }
 
@@ -25,29 +23,35 @@ class Header extends React.Component {
         super(props);
         this.handleLoginClick = this.handleLoginClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
-        this.state = { isLoggedIn: false };
+        this.session = window.sessionStorage;
+        this.state = { userName: (this.session.getItem("userName")) };
     }
 
-    loginControl(isLoggedIn) {
-        const userName = this.props.userName;
+    loginControl() {
         return (
             <div>
-                {isLoggedIn ? TextArea.hello + userName : TextArea.pleaseSignIn}
-                {isLoggedIn ? <LogoutButton onClick={this.handleLogoutClick} /> : <LoginButton onClick={this.handleLoginClick} />}
+                {this.state.userName ? TextArea.hello(this.state.userName) : TextArea.pleaseSignIn}
+                {this.state.userName ? <LogoutButton onClick={this.handleLogoutClick} /> : <LoginButton onClick={this.handleLoginClick} />}
             </div>
         );
 }
 
     handleLoginClick() {
-        this.setState({ isLoggedIn: true });
+        const userName = this.session.getItem("userName");
+        if (userName) {
+            this.setState({userName: userName});
+        } else {
+            window.location.href = "/signin";
+        }
     }
 
     handleLogoutClick() {
-        this.setState({ isLoggedIn: false });
+        this.session.setItem("userName", null);
+        this.setState({ userName: null });
     }
 
     render() {
-        return this.loginControl(this.props.isLoggedIn);
+        return this.loginControl();
     }
 }
 

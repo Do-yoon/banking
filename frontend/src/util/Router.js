@@ -5,7 +5,7 @@ import Home from '../pages/Home'
 import App from '../App'
 import Layout from '../components/Layout';
 
-function Router() {
+function Router(props) {
     return (
         <Routes>
             <Route path="/signin" >

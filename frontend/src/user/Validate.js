@@ -5,20 +5,17 @@ import axios from "axios";
 const validate = {
 	signin: (form) => {
 		console.log(baseurl + urls.signin);
-		console.log(form);
-		axios.post(baseurl + urls.signin, form)
+		return axios.post(baseurl + urls.signin, form)
 			.then((response) => {
-				console.log(response.data);
+				console.log(response.data.loginStatus)
 				if (response.data.loginStatus === 0) {
-					console.log(true);
-					return true;
+					return new Promise(resolve => resolve("do-yoon"/*response.data.userName*/));
 				} else {
-					alert("noooooo");
-					return false;
+					return new Promise((resolve, reject) => reject("invalid"));
 				}
 			})
 			.catch(() => {
-				return false;
+				return new Promise((resolve, reject) => reject("server error"));
 			})
 	}
 }
