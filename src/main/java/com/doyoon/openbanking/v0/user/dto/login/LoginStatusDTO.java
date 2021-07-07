@@ -1,6 +1,6 @@
-package com.doyoon.openbanking.v0.user.login;
+package com.doyoon.openbanking.v0.user.dto.login;
 
-import com.doyoon.openbanking.v0.user.UserInfo;
+import com.doyoon.openbanking.v0.user.dao.UserInfo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,4 +18,10 @@ public class LoginStatusDTO {
 
     private int loginStatus;
     private UserInfo userInfo;
+
+    @Builder
+    public LoginStatusDTO(int loginStatus, UserInfo userInfo) {
+        this.loginStatus = loginStatus;
+        this.userInfo = userInfo;
+    }
 }

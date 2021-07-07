@@ -1,4 +1,4 @@
-package com.doyoon.openbanking.v0.user;
+package com.doyoon.openbanking.v0.user.dao;
 
 import lombok.Getter;
 import lombok.Setter;

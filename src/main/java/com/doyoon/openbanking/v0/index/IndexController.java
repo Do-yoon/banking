@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
+
     // admin page
     @GetMapping("/")
     public String index(Model model) {
