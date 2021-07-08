@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@NoArgsConstructor
 @CrossOrigin
+@NoArgsConstructor
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/signin")
     public LoginStatusDTO signin(@RequestBody SigninDTO signinDTO) {
