@@ -1,17 +1,26 @@
 package com.doyoon.openbanking;
 
 import com.doyoon.openbanking.v0.user.UserController;
+import com.doyoon.openbanking.v0.user.UserService;
 import com.doyoon.openbanking.v0.user.dto.login.LoginStatusDTO;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.aspectj.bridge.MessageUtil.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
+@SpringJUnitConfig
 class OpenBankingApplicationTests {
     //    @Autowired
     //    private UserRepository repository;
-    private final UserController userController = new UserController();
+
+    @Autowired
+    UserService userService;
 
     @BeforeAll
     static void initAll() {
@@ -29,7 +38,10 @@ class OpenBankingApplicationTests {
                 .userInfo(null)
                 .build();
 
-        assertEquals(status, userController.signin(null), "failed");
+        assertAll("LoginStatus",
+                () -> assertEquals(0, status.getLoginStatus()),
+                () -> assertEquals(null, status.getUserInfo())
+        );
 
     }
 
@@ -49,8 +61,6 @@ class OpenBankingApplicationTests {
 
     @Test
     void abortedTest() {
-        assumeTrue("abc".contains("Z"));
-        fail("test should have been aborted");
     }
 
     @AfterEach
@@ -61,7 +71,14 @@ class OpenBankingApplicationTests {
     static void tearDownAll() {
     }
 
+    @Configuration
+    static class ComponentTestConfig {
 
-
+        @Bean
+        UserService userService() {
+            UserService userService = new UserService();
+            return userService;
+        }
+    }
 
 }
