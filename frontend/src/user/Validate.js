@@ -1,6 +1,6 @@
 import React from "react";
 import { urls, baseurl } from '../util/Constants';
-import axios from "axios";
+import axios from 'axios';
 
 const validate = {
 	signin: (form) => {

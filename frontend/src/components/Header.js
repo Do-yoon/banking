@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import TextArea from '../util/Constants';
 
@@ -18,41 +18,32 @@ function LogoutButton(props) {
     );
 }
 
-class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
-        this.handleLogoutClick = this.handleLogoutClick.bind(this);
-        this.session = window.sessionStorage;
-        this.state = { userName: (this.session.getItem("userName")) };
-    }
+function Header(props) {
+    const session = window.sessionStorage;
+    const [userName, setUserName] = useState(session.getItem("userName"));
 
-    loginControl() {
-        return (
-            <div>
-                {this.state.userName ? TextArea.hello(this.state.userName) : TextArea.pleaseSignIn}
-                {this.state.userName ? <LogoutButton onClick={this.handleLogoutClick} /> : <LoginButton onClick={this.handleLoginClick} />}
-            </div>
-        );
-}
 
-    handleLoginClick() {
-        const userName = this.session.getItem("userName");
+    const handleLoginClick = () => {
+        const userName = session.getItem("userName");
         if (userName) {
-            this.setState({userName: userName});
+            setUserName(userName);
         } else {
             window.location.href = "/signin";
         }
     }
 
-    handleLogoutClick() {
-        this.session.setItem("userName", null);
-        this.setState({ userName: null });
+    const handleLogoutClick = () => {
+        session.setItem("userName", null);
+        setUserName(null);
     }
 
-    render() {
-        return this.loginControl();
-    }
+    return (
+        <div>
+            {userName ? TextArea.hello(userName) : TextArea.pleaseSignIn}
+            {userName ? <LogoutButton onClick={handleLogoutClick} /> : <LoginButton onClick={handleLoginClick} />}
+        </div>
+    );
+
 }
 
 export default Header;

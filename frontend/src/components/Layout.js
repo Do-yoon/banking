@@ -1,19 +1,18 @@
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
+import {HeaderStyle, FooterStyle} from '../css/LayoutStyle'
 
-class Layout extends React.Component {
-    render() {
-        return (
-            <div>
-                <Header />
-                <main>
-                    {this.props.children}
-                </main>
-                <Footer />
-            </div>
-        );
-    }
+function Layout(props) {
+    return (
+        <div>
+            <Header className={HeaderStyle} />
+            <main>
+                {props.children}
+            </main>
+            <Footer className={FooterStyle}/>
+        </div>
+    );
 }
 
 export default Layout;
