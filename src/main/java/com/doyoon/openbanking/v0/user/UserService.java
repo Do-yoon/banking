@@ -30,9 +30,9 @@ public class UserService {
             } else {
                 /* wrong password */
                 if (signinDTO.getPassword().equals(loginInfo.getPassword()))
-                    loginStatus = LoginStatus.PASSWORD_INVALID.getValue();
-                else
                     loginStatus = LoginStatus.SUCCESS_TO_SIGN_IN.getValue();
+                else
+                    loginStatus = LoginStatus.PASSWORD_INVALID.getValue();
             }
         } catch (Exception e) {
             loginStatus = LoginStatus.FAILED.getValue();
