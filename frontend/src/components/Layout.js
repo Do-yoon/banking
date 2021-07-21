@@ -1,16 +1,16 @@
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
-import {HeaderStyle, FooterStyle} from '../css/LayoutStyle'
+import '@css/Layout.css'
 
 function Layout(props) {
     return (
         <div>
-            <Header className={HeaderStyle} />
+            <Header style="header" />
             <main>
                 {props.children}
             </main>
-            <Footer className={FooterStyle}/>
+            <Footer style="footer" />
         </div>
     );
 }

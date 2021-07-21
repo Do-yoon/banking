@@ -18,9 +18,9 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,7 +42,14 @@
     ]
   },
   "devDependencies": {
-    "cors": "^2.8.5"
+    "babel-plugin-module-resolver": "^4.1.0",
+    "cors": "^2.8.5",
+    "craco-alias": "^3.0.1"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080",
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  }
 }
