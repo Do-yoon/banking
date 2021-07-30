@@ -1,11 +1,9 @@
 package com.doyoon.openbanking.v0.user;
 
 import com.doyoon.openbanking.v0.user.dao.LoginInfo;
-import com.doyoon.openbanking.v0.user.dao.UserInfo;
-import com.doyoon.openbanking.v0.user.dto.login.LoginStatus;
 import com.doyoon.openbanking.v0.user.dto.login.LoginStatusDTO;
 import com.doyoon.openbanking.v0.user.dto.login.SignInDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.doyoon.openbanking.v0.user.status.LoginStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,31 +16,45 @@ public class UserService {
     public LoginStatusDTO signin(SignInDTO signinDTO) {
 
         int loginStatus;
+        LoginStatusDTO res = LoginStatusDTO.builder()
+                .userInfo(null)
+                .build();
 
         try {
             System.out.println("userRepository: " + userRepository);
-            System.out.println(signinDTO.getEmail());
-            LoginInfo loginInfo = userRepository.findByEmail(signinDTO.getEmail());
-            System.out.println(loginInfo);
+            String email = signinDTO.getEmail();
+            LoginInfo loginInfo = userRepository.findByEmail(email);
 
+            /* email validation */
             if (loginInfo == null) {
-                loginStatus = LoginStatus.ID_INVALID.getValue();
-            } else {
-                /* wrong password */
-                if (signinDTO.getPassword().equals(loginInfo.getPassword()))
-                    loginStatus = LoginStatus.SUCCESS_TO_SIGN_IN.getValue();
-                else
-                    loginStatus = LoginStatus.PASSWORD_INVALID.getValue();
+                res.setLoginStatus(LoginStatus.ID_INVALID.getValue());
+                return res;
             }
-        } catch (Exception e) {
-            loginStatus = LoginStatus.FAILED.getValue();
-        }
 
-        return LoginStatusDTO.builder()
-                .loginStatus(loginStatus)
-                .userInfo(null)
-                .build();
+            /* password validation */
+            boolean isValidPassword = signinDTO.getPassword().equals(loginInfo.getPassword());
+
+            if (!isValidPassword) {
+                res.setLoginStatus(LoginStatus.PASSWORD_INVALID.getValue());
+                return res;
+            }
+
+            /* OAuth validation */
+            if (OAuthValidation(email)) {
+                res.setLoginStatus(LoginStatus.SUCCESS_TO_SIGN_IN.getValue());
+            }
+
+        } catch (Exception e) {
+            res.setLoginStatus(LoginStatus.FAILED.getValue());
+        }
+        return res;
+
     }
+
+    private boolean OAuthValidation(String id) {
+        return true;
+    }
+
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;

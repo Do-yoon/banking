@@ -1,4 +1,4 @@
-package com.doyoon.openbanking.v0.user.dto.login;
+package com.doyoon.openbanking.v0.user.status;
 
 import lombok.Getter;
 import lombok.val;
@@ -13,7 +13,7 @@ public enum LoginStatus {
     EXPIRED_SESSION(5);
 
     private int value;
-    private LoginStatus(int value) {
+    LoginStatus(int value) {
         this.value = value;
     }
 }

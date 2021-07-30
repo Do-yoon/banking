@@ -7,7 +7,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
 public class LoginStatusDTO {
     /*
      0: success sign in

@@ -4,7 +4,6 @@ import com.doyoon.openbanking.v0.user.dao.LoginInfo;
 import com.doyoon.openbanking.v0.user.dao.UserInfo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
