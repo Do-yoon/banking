@@ -17,4 +17,9 @@ export const baseurl = (!process.env.NODE_ENV || process.env.NODE_ENV === 'devel
     'http://localhost:8080' :
     'http://localhost:8080')
 
+
+export const categories = [
+    "diary",
+    "tech"
+];
 export default TextArea;

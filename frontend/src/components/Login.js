@@ -1,6 +1,6 @@
 import React from 'react'
-import TextArea from '../util/Constants';
-import validate from "../user/Validate";
+import TextArea from '@util/Constants';
+import validate from '@user/Validate';
 
 class Login extends React.Component {
     constructor(props) {
@@ -41,7 +41,7 @@ class Login extends React.Component {
         return (
             <div>
                 <div>
-                    ID<input type="text" name="userId" value={this.state.id} onChange={this.handleChange}/>
+                    ID<input className="email" type="text" name="userId" value={this.state.id} onChange={this.handleChange}/>
                 </div>
                 <div>
                     PW<input type="password" name="userPw" value={this.state.pw} onChange={this.handleChange}/>
