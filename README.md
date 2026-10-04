@@ -32,6 +32,16 @@ banking/
 
 Java · Spring Boot · Gradle · React · craco
 
+## What I learned
+
+- **Layered MVC backend structure** — the Controller · Service · Repository
+  separation I practiced here became my mental model for backend design, and
+  carried over directly when I later picked up FastAPI and Django: same
+  layering, different framework.
+- **OAuth 2.0 against a real institution** — wiring the KFTC authorization
+  flow end to end, not against a mock.
+- **Frontend/backend separation** — one repo, two apps, REST in between.
+
 ## Run
 
 ```bash
