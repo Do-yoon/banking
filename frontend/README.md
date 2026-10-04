@@ -5,11 +5,9 @@ You can see your payment history using this app, with graphs.
 
 ## Make your own searching list.
 You can make your own filter —such as "including specific keywords" or "without specific date"— and draw your own graph.
-Add the filtering function what you want, in `XXX` directory.
 
 ## This app is for Korean payment module.
 This app uses ___Openbanking API___ provided by KFTC(Korea Financial Telecommunications & Clearings Institute).
-You can customize this app by modifying `XXX` module.
 
 ## Build
 This app uses `craco` for aliasing. You should install node modules using the following command:
